@@ -1,0 +1,18 @@
+/config
+  - db.js
+/models
+  - user.model.js
+  - appointment.model.js
+  - medicalRecord.model.js
+  - healthResource.model.js
+/routes
+  - auth.routes.js
+  - appointment.routes.js
+  - medicalRecord.routes.js
+  - healthResource.routes.js
+/middleware
+  - auth.jwt.js
+  - role.check.js
+/services
+  - email.service.js
+  - sms.service.js
