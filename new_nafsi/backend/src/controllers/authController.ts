@@ -28,7 +28,7 @@ export const registerUser = async (req: Request, res: Response) => {
     } else {
       res.status(400).json({ message: 'Invalid user data' });
     }
-  } catch (error) {
+  } catch (error: any) { // Explicitly cast error to `any`
     res.status(500).json({ message: error.message });
   }
 };

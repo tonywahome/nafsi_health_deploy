@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 import User from "../models/userModel";
 
-export interface AuthRequest extends Request {
+interface AuthRequest extends Request {
   user?: any;
 }
 
@@ -28,9 +28,7 @@ export const protect = async (
     } catch (error) {
       res.status(401).json({ message: "Not authorized, token failed" });
     }
-  }
-
-  if (!token) {
+  } else {
     res.status(401).json({ message: "Not authorized, no token" });
   }
 };

@@ -1,7 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import bodyParser from "body-parser";
 import connectDB from "./config/db";
 import authRoutes from "./routes/authRoutes";
 
@@ -10,7 +9,7 @@ connectDB();
 
 const app = express();
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json()); // Add this middleware to parse JSON request bodies
 
 app.use("/api/auth", authRoutes);
 
