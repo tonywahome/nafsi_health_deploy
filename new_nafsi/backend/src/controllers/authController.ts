@@ -1,11 +1,14 @@
-/authController.ts
-import { Request, Response } from 'express';
-import User from '../models/userModel';
-import jwt from 'jsonwebtoken';
+import { Request, Response } from "express";
+import User from "../models/userModel";
+import jwt from "jsonwebtoken";
 
-const generateToken = (id: string) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET || 'secret', { expiresIn: '30d' });
-};
+function generateToken(id: string) {
+  return jwt.sign({ id }, process.env.JWT_SECRET || "secret", {
+    expiresIn: "30d",
+  });
+}
+
+const regex = /pattern/; // Correctly terminated
 
 export const registerUser = async (req: Request, res: Response) => {
   const { name, email, password, userType } = req.body;
@@ -13,7 +16,7 @@ export const registerUser = async (req: Request, res: Response) => {
   try {
     const userExists = await User.findOne({ email });
     if (userExists) {
-      return res.status(400).json({ message: 'User already exists' });
+      return res.status(400).json({ message: "User already exists" });
     }
 
     const user = await User.create({ name, email, password, userType });
@@ -26,9 +29,10 @@ export const registerUser = async (req: Request, res: Response) => {
         token: generateToken(user.id),
       });
     } else {
-      res.status(400).json({ message: 'Invalid user data' });
+      res.status(400).json({ message: "Invalid user data" });
     }
-  } catch (error: any) { // Explicitly cast error to `any`
+  } catch (error: any) {
+    // Explicitly cast error to `any`
     res.status(500).json({ message: error.message });
   }
 };
@@ -47,7 +51,7 @@ export const loginUser = async (req: Request, res: Response) => {
         token: generateToken(user.id),
       });
     } else {
-      res.status(401).json({ message: 'Invalid email or password' });
+      res.status(401).json({ message: "Invalid email or password" });
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -64,6 +68,6 @@ export const getUserProfile = async (req: Request, res: Response) => {
       userType: user.userType,
     });
   } else {
-    res.status(404).json({ message: 'User not found' });
+    res.status(404).json({ message: "User not found" });
   }
 };
