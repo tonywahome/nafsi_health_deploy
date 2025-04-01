@@ -1,7 +1,7 @@
 **NAFSI DEVELOPMENT**
 This platform was developed in reference to the [System Project Proposal](https://docs.google.com/document/d/1k-dRHxfNcxk0rlomOcIeNV5Cl5n4lZEBvMXDZyjxyzQ/edit?usp=sharing)
 
-<<<<<<< HEAD
+
 The following tools and frameworks were used throughout the development cycle of NAFSI Health
 
 - REACT
